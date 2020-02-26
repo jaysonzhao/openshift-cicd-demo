@@ -119,7 +119,7 @@ pipeline {
                    
                     
                         applyTemplate(project: env.PROD_PROJECT, 
-                                      application: blueGreen.getApplication1Name(env.APP_NAME), 
+                                      application: env.APP_NAME, 
                                       template: env.APP_TEMPLATE, 
                                       parameters: env.APP_TEMPLATE_PARAMETERS_PROD)
                                       
@@ -134,7 +134,7 @@ pipeline {
                              dstTag: env.TAG_NAME)
 
                     deployImage(project: env.PROD_PROJECT, 
-                                application: blueGreen.getBlueApplication(project: env.PROD_PROJECT, application: env.APP_NAME), 
+                                application: env.APP_NAME, 
                                 image: env.IMAGE_NAME, 
                                 tag: env.TAG_NAME)
                 } 
