@@ -118,12 +118,12 @@ pipeline {
                 script {
                    
                     
-                        applyTemplate(project: env.PROD_PROJECT, 
+                    applyTemplate(project: env.PROD_PROJECT, 
                                       application: env.APP_NAME, 
                                       template: env.APP_TEMPLATE, 
                                       parameters: env.APP_TEMPLATE_PARAMETERS_PROD)
                                       
-                        createBlueGreenRoute(project: env.PROD_PROJECT, application: env.APP_NAME)
+                    blueGreen.createBlueGreenRoute(project: env.PROD_PROJECT, application: env.APP_NAME)
                   
                     
                     tagImage(srcProject: env.TEST_PROJECT, 
@@ -145,7 +145,7 @@ pipeline {
                 input("Switch to new version?")
 
                 script{
-                    switchToGreenApplication(project: env.PROD_PROJECT, application: env.APP_NAME)   
+                    blueGreen.switchToGreenApplication(project: env.PROD_PROJECT, application: env.APP_NAME)   
                 }              
             }
         }
