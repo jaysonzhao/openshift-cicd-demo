@@ -65,7 +65,7 @@ pipeline {
         }
         stage("Deploy TEST") {
             steps {
-                input("Promote to TEST?")
+               // input("Promote to TEST?")
 
                 applyTemplate(project: env.TEST_PROJECT, 
                               application: env.APP_NAME, 
