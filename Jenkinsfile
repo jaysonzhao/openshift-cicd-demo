@@ -123,7 +123,7 @@ pipeline {
                                       template: env.APP_TEMPLATE, 
                                       parameters: env.APP_TEMPLATE_PARAMETERS_PROD)
                                       
-                    blueGreen.createBlueGreenRoute(project: env.PROD_PROJECT, application: env.APP_NAME)
+                    
                   
                     
                     tagImage(srcProject: env.TEST_PROJECT, 
@@ -140,14 +140,6 @@ pipeline {
                 } 
             }
         }
-        stage("Deploy PROD (Green)") {
-            steps {
-                input("Switch to new version?")
-
-                script{
-                    blueGreen.switchToGreenApplication(project: env.PROD_PROJECT, application: env.APP_NAME)   
-                }              
-            }
-        }
+        
     }
 }
