@@ -122,11 +122,6 @@ pipeline {
                                       template: env.APP_TEMPLATE, 
                                       parameters: env.APP_TEMPLATE_PARAMETERS_PROD)
                                       
-                        applyTemplate(project: env.PROD_PROJECT, 
-                                      application: blueGreen.getApplication2Name(env.APP_NAME), 
-                                      template: env.APP_TEMPLATE, 
-                                      parameters: env.APP_TEMPLATE_PARAMETERS_PROD) 
-
                         blueGreen.createBlueGreenRoute(project: env.PROD_PROJECT, application: env.APP_NAME)
                     } else {
                         applyTemplate(project: env.PROD_PROJECT, 
