@@ -109,7 +109,7 @@ pipeline {
                 unstash "repo"
 
                 container("python") {
-                    sh "sudo pip install requests"
+                    sh "pip install requests"
                     sh "python ./src/test/python/it.py"
                 }
             }
