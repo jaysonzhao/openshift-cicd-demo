@@ -3,7 +3,7 @@
 def call() {
     env.IMAGE_NAME = env.APP_NAME
     
-    env.DEV_PROJECT = "cicd"
+    env.DEV_PROJECT = "dev"
     env.TEST_PROJECT = "test"
     env.PROD_PROJECT = "prod"
                     
