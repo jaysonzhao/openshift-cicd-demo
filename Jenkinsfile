@@ -97,8 +97,7 @@ pipeline {
                         spec:
                           containers:
                           - name: python
-                            image: python:3.6
-                            namespace: openshift                            
+                            image:  docker-registry.default.svc:5000/openshift/python:3.6                        
                             command:
                             - cat
                             tty: true
