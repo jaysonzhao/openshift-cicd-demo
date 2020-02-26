@@ -116,19 +116,14 @@ pipeline {
         stage("Deploy PROD (Blue)") {
             steps {
                 script {
-                    if (!blueGreen.existsBlueGreenRoute(project: env.PROD_PROJECT, application: env.APP_NAME)) {
+                   
                         applyTemplate(project: env.PROD_PROJECT, 
                                       application: blueGreen.getApplication1Name(env.APP_NAME), 
                                       template: env.APP_TEMPLATE, 
                                       parameters: env.APP_TEMPLATE_PARAMETERS_PROD)
                                       
                         blueGreen.createBlueGreenRoute(project: env.PROD_PROJECT, application: env.APP_NAME)
-                    } else {
-                        applyTemplate(project: env.PROD_PROJECT, 
-                                      application: blueGreen.getBlueApplication(project: env.PROD_PROJECT, application: env.APP_NAME), 
-                                      template: env.APP_TEMPLATE, 
-                                      parameters: env.APP_TEMPLATE_PARAMETERS_PROD)
-                    }
+                 
                     
                     tagImage(srcProject: env.TEST_PROJECT, 
                              srcImage: env.IMAGE_NAME, 
