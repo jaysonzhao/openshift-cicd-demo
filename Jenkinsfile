@@ -113,30 +113,12 @@ pipeline {
                 }
             }
         }
-        stage("Deploy PROD (Blue)") {
+        stage("Deploy PROD") {
             steps {
                 script {
                    
-                    
-                    applyTemplate(project: env.PROD_PROJECT, 
-                                      application: env.APP_NAME, 
-                                      template: env.APP_TEMPLATE, 
-                                      parameters: env.APP_TEMPLATE_PARAMETERS_PROD)
-                                      
-                    
-                  
-                    
-                    tagImage(srcProject: env.TEST_PROJECT, 
-                             srcImage: env.IMAGE_NAME, 
-                             srcTag: env.TAG_NAME, 
-                             dstProject: env.PROD_PROJECT, 
-                             dstImage: env.IMAGE_NAME,
-                             dstTag: env.TAG_NAME)
-
-                    deployImage(project: env.PROD_PROJECT, 
-                                application: env.APP_NAME, 
-                                image: env.IMAGE_NAME, 
-                                tag: env.TAG_NAME)
+                  input("Promote to PROD?")  
+                   
                 } 
             }
         }
